@@ -70,7 +70,7 @@ if janela == "Cadastro":
         fixaet = st.number_input("RECEITA FIXA(EXT)", help= " QUANTIDADE DE RECEITA FIXA(VENDA EXT)",step=1 )
 
     with col10_fixa:
-        fixaet = st.number_input("FÍSICO FIXA(EXT)", help= " QUANTIDADE DE FÍSICO FIXA(VENDA EXT)",step=1 )
+        fixaet2 = st.number_input("FÍSICO FIXA(EXT)", help= " QUANTIDADE DE FÍSICO FIXA(VENDA EXT)",step=1 )
 
     with col11_fixa:
         fixaet3 = st.number_input("FÍSICO VIVO TOTAL(EXT)", help= " QUANTIDADE DE FÍSICO VIVO TOTAL FIXA(VENDA EXT)" ,step=1)
@@ -96,12 +96,29 @@ if janela == "Cadastro":
 
     #TERCEIRO CAMPO DE PREEENCHIMENTO 
 
-    
+    st.subheader("Campo de preenchimento  Terminas")
+
+    #PRIMEIRA LINHA 
+
+    col17_tm,col18_tm , col19_tm , col20_tm = st.columns(4)
+
+    with col17_tm:
+        terminal = st.number_input("RECEITA TERMINAIS" , help= "QUANTIDADE DE RECEITA TERMINAS",step=1)
+
+    with col18_tm:
+        terminal2 = st.number_input("FISÍCO TERMINAIS" , help= "QUANTIDADE DE FÍSICO TERMINAS",step=1)
+
+    with col19_tm: 
+        aparelho1 = st.number_input("RECEITA APARELHOS" , help= "QUANTIDADE DE RECEITA APARELHOS",step=1) 
+
+    with col20_tm:
+        aparelho2 = st.number_input("FÍSICO APARELHOS" , help= "QUANTIDADE DE RECEITA APARELHOS",step=1) 
+
+
 
     if st.button("Cadastrar"):
-            
+
             if nome and data and alta and alta2:
-                
                 st.session_state.planilha_fechamento = pd.DataFrame({"OPERAÇÃO" : [nome]
                                                                     , "DATA" : [data]  ,
                                                                     "ALTA PÓS PURO(RECEITA) " : [alta],
@@ -112,9 +129,13 @@ if janela == "Cadastro":
                                                                     "ALTA CONTROLE (FÍSICO)" : [controle2] , 
                                                                     "MIGRA CTRL PRÉ (RECEITA)" : [migra_controle] , 
                                                                     "MIGRA CTRL PRÉ (FÍSICO)" : [migra_controle2] , 
-                                                                    "PORTABILIDADE" : [portabilidade]
-
-
+                                                                    "PORTABILIDADE" : [portabilidade] , 
+                                                                    "RECEITA FIXA(VENDA EXT)" : [fixaet] , 
+                                                                    "RECEITA FÍSICO(VENDA EXT)" : [fixaet2] , 
+                                                                    "FÍSICO VIVO TOTAL(VENDA EXT)" : [fixaet3],
+                                                                    "B2B FÍXA(FÍSICO)" :[fixaet4] , 
+                                                                    "RECEITA FIXA(LOJA)" [fixal],
+                                                                    "" 
                                                                     })
                 st.session_state.nova_planilha = pd.read_excel(st.session_state.arquivo)
                 st.session_state.novo = pd.concat([st.session_state.nova_planilha, st.session_state.planilha_fechamento], ignore_index=True)
@@ -123,6 +144,7 @@ if janela == "Cadastro":
 
             else:
                 st.error("Preencha todos os dados solicitados! ")
+        
 
 
 
