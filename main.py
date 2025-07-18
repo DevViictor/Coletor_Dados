@@ -115,9 +115,7 @@ elif janela == "Resultado Diário":
                 st.header("Fechameneto Diário")
                 st.dataframe(st.session_state.novo)
 
-                st.subheader("Fechamento Total")
-                st.bar_chart(grafico_geral.set_index("Tipo"))    
-    
+            
                     
 
                 
